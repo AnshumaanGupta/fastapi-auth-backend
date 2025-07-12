@@ -1,8 +1,9 @@
 # Postman Collection for Authentication API
 
 ## Import Instructions
+
 1. Open Postman
-2. Click "Import" 
+2. Click "Import"
 3. Copy and paste this JSON
 4. Set the `{{base_url}}` variable to `http://209.38.123.128`
 
@@ -209,12 +210,14 @@
 ## Variables Setup
 
 In Postman, set these collection variables:
+
 - `base_url`: `http://209.38.123.128`
 - `jwt_token`: (automatically set after signin)
 
 ## Environment Variables (Alternative)
 
 Create a Postman environment with:
+
 ```json
 {
   "name": "Authentication API Environment",

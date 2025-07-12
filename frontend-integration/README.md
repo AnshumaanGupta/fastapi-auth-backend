@@ -37,19 +37,19 @@ npm install react-router-dom
 ### 1. **Signup (Registration)**
 
 ```javascript
-import authService from './services/authService';
+import authService from "./services/authService";
 
 const handleSignup = async () => {
   try {
     const response = await authService.signup({
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      password: 'password123'
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@example.com",
+      password: "password123",
     });
-    console.log('Account created!', response);
+    console.log("Account created!", response);
   } catch (error) {
-    console.error('Signup failed:', error.message);
+    console.error("Signup failed:", error.message);
   }
 };
 ```
@@ -60,13 +60,13 @@ const handleSignup = async () => {
 const handleSignin = async () => {
   try {
     const response = await authService.signin({
-      email: 'john@example.com',
-      password: 'password123'
+      email: "john@example.com",
+      password: "password123",
     });
-    console.log('Logged in!', response.user);
+    console.log("Logged in!", response.user);
     // Token is automatically stored in localStorage
   } catch (error) {
-    console.error('Login failed:', error.message);
+    console.error("Login failed:", error.message);
   }
 };
 ```
@@ -76,10 +76,10 @@ const handleSignin = async () => {
 ```javascript
 const handleForgotPassword = async () => {
   try {
-    const response = await authService.forgotPassword('john@example.com');
-    console.log('Reset email sent!', response);
+    const response = await authService.forgotPassword("john@example.com");
+    console.log("Reset email sent!", response);
   } catch (error) {
-    console.error('Failed to send reset email:', error.message);
+    console.error("Failed to send reset email:", error.message);
   }
 };
 ```
@@ -90,9 +90,9 @@ const handleForgotPassword = async () => {
 const handleResetPassword = async (token, newPassword) => {
   try {
     const response = await authService.resetPassword(token, newPassword);
-    console.log('Password updated!', response);
+    console.log("Password updated!", response);
   } catch (error) {
-    console.error('Password reset failed:', error.message);
+    console.error("Password reset failed:", error.message);
   }
 };
 ```
@@ -103,9 +103,9 @@ const handleResetPassword = async (token, newPassword) => {
 const fetchUserData = async () => {
   try {
     const user = await authService.getCurrentUser();
-    console.log('Current user:', user);
+    console.log("Current user:", user);
   } catch (error) {
-    console.error('Failed to fetch user:', error.message);
+    console.error("Failed to fetch user:", error.message);
   }
 };
 ```
@@ -145,7 +145,8 @@ REACT_APP_API_BASE_URL=http://209.38.123.128/api/auth
 Update `authService.js`:
 
 ```javascript
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://209.38.123.128/api/auth';
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "http://209.38.123.128/api/auth";
 ```
 
 ## 📱 Mobile Considerations
@@ -153,13 +154,13 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://209.38.123.12
 For React Native, replace `localStorage` with `AsyncStorage`:
 
 ```javascript
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Replace localStorage.setItem with:
-await AsyncStorage.setItem('access_token', token);
+await AsyncStorage.setItem("access_token", token);
 
 // Replace localStorage.getItem with:
-const token = await AsyncStorage.getItem('access_token');
+const token = await AsyncStorage.getItem("access_token");
 ```
 
 ## 🛡️ Security Best Practices
@@ -177,16 +178,16 @@ Test your API calls:
 ```javascript
 // Test signup
 authService.signup({
-  firstName: 'Test',
-  lastName: 'User',
-  email: 'test@example.com',
-  password: 'password123'
+  firstName: "Test",
+  lastName: "User",
+  email: "test@example.com",
+  password: "password123",
 });
 
 // Test signin
 authService.signin({
-  email: 'test@example.com',
-  password: 'password123'
+  email: "test@example.com",
+  password: "password123",
 });
 ```
 

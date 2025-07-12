@@ -1,26 +1,28 @@
 # API Quick Reference
 
 ## Base URL
+
 ```
 http://209.38.123.128
 ```
 
 ## Endpoints Summary
 
-| Method | Endpoint | Auth Required | Description |
-|--------|----------|---------------|-------------|
-| GET | `/health` | ❌ | Health check |
-| GET | `/` | ❌ | API status |
-| POST | `/api/auth/signup` | ❌ | Register user |
-| POST | `/api/auth/signin` | ❌ | Login user |
-| POST | `/api/auth/forgot-password` | ❌ | Request password reset |
-| POST | `/api/auth/reset-password` | ❌ | Reset password with token |
-| GET | `/api/auth/me` | ✅ | Get current user |
-| POST | `/api/auth/verify-token` | ✅ | Verify JWT token |
+| Method | Endpoint                    | Auth Required | Description               |
+| ------ | --------------------------- | ------------- | ------------------------- |
+| GET    | `/health`                   | ❌            | Health check              |
+| GET    | `/`                         | ❌            | API status                |
+| POST   | `/api/auth/signup`          | ❌            | Register user             |
+| POST   | `/api/auth/signin`          | ❌            | Login user                |
+| POST   | `/api/auth/forgot-password` | ❌            | Request password reset    |
+| POST   | `/api/auth/reset-password`  | ❌            | Reset password with token |
+| GET    | `/api/auth/me`              | ✅            | Get current user          |
+| POST   | `/api/auth/verify-token`    | ✅            | Verify JWT token          |
 
 ## Quick Examples
 
 ### Signup
+
 ```bash
 curl -X POST http://209.38.123.128/api/auth/signup \
   -H "Content-Type: application/json" \
@@ -28,6 +30,7 @@ curl -X POST http://209.38.123.128/api/auth/signup \
 ```
 
 ### Signin
+
 ```bash
 curl -X POST http://209.38.123.128/api/auth/signin \
   -H "Content-Type: application/json" \
@@ -35,12 +38,14 @@ curl -X POST http://209.38.123.128/api/auth/signin \
 ```
 
 ### Get User (Protected)
+
 ```bash
 curl -X GET http://209.38.123.128/api/auth/me \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
 ### Forgot Password
+
 ```bash
 curl -X POST http://209.38.123.128/api/auth/forgot-password \
   -H "Content-Type: application/json" \
@@ -50,39 +55,41 @@ curl -X POST http://209.38.123.128/api/auth/forgot-password \
 ## JavaScript Examples
 
 ### Using Fetch API
+
 ```javascript
 // Signup
-const signup = await fetch('http://209.38.123.128/api/auth/signup', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+const signup = await fetch("http://209.38.123.128/api/auth/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    email: 'user@example.com',
-    password: 'password123',
-    first_name: 'John',
-    last_name: 'Doe'
-  })
+    email: "user@example.com",
+    password: "password123",
+    first_name: "John",
+    last_name: "Doe",
+  }),
 });
 
 // Signin
-const signin = await fetch('http://209.38.123.128/api/auth/signin', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+const signin = await fetch("http://209.38.123.128/api/auth/signin", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    email: 'user@example.com',
-    password: 'password123'
-  })
+    email: "user@example.com",
+    password: "password123",
+  }),
 });
 const { access_token, user } = await signin.json();
 
 // Protected request
-const userInfo = await fetch('http://209.38.123.128/api/auth/me', {
-  headers: { 'Authorization': `Bearer ${access_token}` }
+const userInfo = await fetch("http://209.38.123.128/api/auth/me", {
+  headers: { Authorization: `Bearer ${access_token}` },
 });
 ```
 
 ## Common Response Formats
 
 ### Success Response (Signup/Forgot Password)
+
 ```json
 {
   "message": "Success message",
@@ -91,6 +98,7 @@ const userInfo = await fetch('http://209.38.123.128/api/auth/me', {
 ```
 
 ### Token Response (Signin)
+
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIs...",
@@ -107,6 +115,7 @@ const userInfo = await fetch('http://209.38.123.128/api/auth/me', {
 ```
 
 ### User Response (Get User)
+
 ```json
 {
   "id": "user-uuid",
@@ -119,6 +128,7 @@ const userInfo = await fetch('http://209.38.123.128/api/auth/me', {
 ```
 
 ### Error Response
+
 ```json
 {
   "detail": "Error message description"
@@ -126,6 +136,7 @@ const userInfo = await fetch('http://209.38.123.128/api/auth/me', {
 ```
 
 ## Status Codes
+
 - `200` - Success
 - `400` - Bad Request
 - `401` - Unauthorized
